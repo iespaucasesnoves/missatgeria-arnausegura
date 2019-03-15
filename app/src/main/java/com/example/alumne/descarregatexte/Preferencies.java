@@ -16,8 +16,8 @@ public class Preferencies {
     private String token;
     private SharedPreferences prefs;
 
-    public Preferencies(Context ctx) {
-        this.prefs = ctx.getSharedPreferences(NOM_PREFERENCIES, ctx.MODE_PRIVATE);
+    Preferencies(Context ctx) {
+        this.prefs = ctx.getSharedPreferences(NOM_PREFERENCIES, Context.MODE_PRIVATE);
         this.codiusuari = this.prefs.getInt(CLAU_CODIUSUARI, -1);
         this.user = this.prefs.getString(CLAU_USER, "");
         this.password = this.prefs.getString(CLAU_PASSWD, "");

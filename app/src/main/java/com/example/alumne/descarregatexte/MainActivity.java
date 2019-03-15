@@ -32,17 +32,17 @@ public class MainActivity extends AppCompatActivity {
     public static Preferencies preferencies;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferencies = new Preferencies(this);
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, IniciActivity2.class);
         startActivity(intent);
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         tv = findViewById(R.id.list);
+        new TascaDescarrega(this).execute();
     }
 
 }

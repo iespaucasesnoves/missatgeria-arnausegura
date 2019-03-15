@@ -28,8 +28,8 @@ class TascaDescarrega extends AsyncTask<String, Integer, ArrayList<HashMap<Strin
     BufferedReader in = null;
     int responseCode = -1;
     String texte = "";
-    String[] from = {"id", "nom", "email"};
-    int[] to = {R.id.textView, R.id.textView2, R.id.textView3};
+    String[] from = {"codi", "msg", "datahora","codiusuari","nom"};
+    int[] to = {R.id.textView, R.id.textView3, R.id.textView4,R.id.textView2,R.id.textView5};
     Context contexte;
 
 
@@ -45,43 +45,44 @@ class TascaDescarrega extends AsyncTask<String, Integer, ArrayList<HashMap<Strin
     @Override
     protected ArrayList<HashMap<String, String>>  doInBackground(String... params) {
         URL url = null;
-        try {
-            url = new URL(params[0]);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.connect();
-            responseCode = httpURLConnection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                ArrayList<HashMap<String, String>> llista = new ArrayList<HashMap<String, String>>();
-                    try {
-                        String linea;
-                        while((linea = in.readLine()) != null) {
-                            texte += linea;
-                        }
-                            JSONObject json = new JSONObject(texte);
-                            JSONArray jArray = json.getJSONArray("dades");
-                            for (int i = 0; i < jArray.length(); i++) {
-                                HashMap<String, String> map = new HashMap<String, String>();
-                                JSONObject jObject = jArray.getJSONObject(i);
-                                map.put("id", jObject.getString("id"));
-                                map.put("nom", jObject.getString("nom"));
-                                map.put("email", jObject.getString("email"));
-                                map.put("fk_role", jObject.getString("fk_role"));
-                                llista.add(map);
+            try {
+                url = new URL("https://iesmantpc.000webhostapp.com/public/provamissatge/");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.connect();
+                responseCode = httpURLConnection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                    ArrayList<HashMap<String, String>> llista = new ArrayList<HashMap<String, String>>();
+                        try {
+                            String linea;
+                            while((linea = in.readLine()) != null) {
+                                texte += linea;
                             }
+                                JSONObject json = new JSONObject(texte);
+                                JSONArray jArray = json.getJSONArray("dades");
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    HashMap<String, String> map = new HashMap<String, String>();
+                                    JSONObject jObject = jArray.getJSONObject(i);
+                                    map.put("codi", jObject.getString("codi"));
+                                    map.put("msg", jObject.getString("msg"));
+                                    map.put("datahora", jObject.getString("datahora"));
+                                    map.put("codiusuari", jObject.getString("codiusuari"));
+                                    map.put("nom", jObject.getString("nom"));
+                                    llista.add(map);
+                                }
 
 
-                    return llista;
-                } catch (JSONException e){
-                    e.printStackTrace();
+                        return llista;
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
                 }
+                    in.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-                in.close();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
