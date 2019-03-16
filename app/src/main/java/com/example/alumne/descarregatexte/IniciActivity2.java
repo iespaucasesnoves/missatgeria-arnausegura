@@ -302,10 +302,11 @@ public class IniciActivity2 extends AppCompatActivity implements LoaderCallbacks
             try {
                 obj = new JSONObject(CridadaPost(url,hmap));
                 if(obj.getBoolean("correcta")) {
-                    MainActivity.preferencies.setCodiusuari(Integer.parseInt(obj.get("codiusuari").toString()));
+                    obj = obj.getJSONObject("dades");
+                    MainActivity.preferencies.setCodiusuari(Integer.parseInt(obj.getString("codiusuari")));
                     MainActivity.preferencies.setUser(mEmail);
                     MainActivity.preferencies.setUser(mPassword);
-                    MainActivity.preferencies.setToken(obj.get("token").toString());
+                    MainActivity.preferencies.setToken(obj.getString("token"));
                 }else{
                     return false;
                 }

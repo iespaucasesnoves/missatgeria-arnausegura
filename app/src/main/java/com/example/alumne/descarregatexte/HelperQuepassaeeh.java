@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class HelperQuepassaeh extends SQLiteOpenHelper {
+public class HelperQuepassaeeh extends SQLiteOpenHelper {
 
     public static final String TABLE_MISSATGE = "missatge";
     public static final String COLUMN_CODI = "codi";
@@ -24,7 +24,7 @@ public class HelperQuepassaeh extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE_MISSATGE = "create table " + TABLE_MISSATGE + "(" + COLUMN_CODI + " integer primary key, " + COLUMN_MSG + " text not null," + COLUMN_DATAHORA + " text not null," + COLUMN_FKCODIUSUARI + " integer not null," + COLUMN_PENDENT + " integer default 0 not null," + "FOREIGN KEY(" + COLUMN_FKCODIUSUARI + ") REFERENCES " + TABLE_USUARI + "(" + COLUMN_CODIUSUARI + "))";
     private static final String DATABASE_CREATE_USUARI = "create table " + TABLE_USUARI + "(" + COLUMN_CODIUSUARI + " integer primary key, " + COLUMN_NOM + " text not null," + COLUMN_EMAIL + " text," + COLUMN_FOTO + " text)";
 
-    public HelperQuepassaeh(Context context) {
+    public HelperQuepassaeeh(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -37,7 +37,7 @@ public class HelperQuepassaeh extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(HelperQuepassaeh.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
+        Log.w(HelperQuepassaeeh.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MISSATGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USUARI);
         onCreate(db);

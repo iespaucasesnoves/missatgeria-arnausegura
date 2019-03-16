@@ -78,8 +78,6 @@ class TascaDescarrega extends AsyncTask<String, Integer, ArrayList<HashMap<Strin
                     }
                 }
                     in.close();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

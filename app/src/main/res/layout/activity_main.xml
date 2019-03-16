@@ -11,7 +11,22 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/enviar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list"
+        android:layout_alignEnd="@+id/list"
+        android:layout_marginTop="-67dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:onClick="enviarMissatge"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.widget.RelativeLayout>

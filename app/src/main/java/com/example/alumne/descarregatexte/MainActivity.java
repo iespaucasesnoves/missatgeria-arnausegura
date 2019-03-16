@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     static ListView tv;
     public static Preferencies preferencies;
+    HelperQuepassaeeh helperQuepassaeeh;
 
 
     @Override
@@ -43,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         tv = findViewById(R.id.list);
         new TascaDescarrega(this).execute();
+    }
+
+    public void enviarMissatge(View v){
+        Intent intent = new Intent(this,EnviarMissatge.class);
+        startActivity(intent);
     }
 
 }
